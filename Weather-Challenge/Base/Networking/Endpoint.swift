@@ -18,7 +18,7 @@ extension Endpoint {
 }
 
 extension Endpoint {
-    var host: String { "api.openweathermap.org "}
+    var host: String { "api.openweathermap.org"}
     
     var path: String {
         switch self {

@@ -15,6 +15,7 @@
 		077B20A52AAF37E500AB1B31 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077B20A42AAF37E500AB1B31 /* Endpoint.swift */; };
 		077B20AA2AAF3B7500AB1B31 /* Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077B20A92AAF3B7500AB1B31 /* Current.swift */; };
 		077B20B02AAF3D0700AB1B31 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077B20AF2AAF3D0700AB1B31 /* WeatherViewModel.swift */; };
+		077B20B22AAF3E4100AB1B31 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077B20B12AAF3E4100AB1B31 /* WeatherView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		077B20A42AAF37E500AB1B31 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		077B20A92AAF3B7500AB1B31 /* Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Current.swift; sourceTree = "<group>"; };
 		077B20AF2AAF3D0700AB1B31 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		077B20B12AAF3E4100AB1B31 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		077B20AE2AAF3CE600AB1B31 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				077B20B12AAF3E4100AB1B31 /* WeatherView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				077B20AA2AAF3B7500AB1B31 /* Current.swift in Sources */,
 				077B20942AAF376600AB1B31 /* ContentView.swift in Sources */,
 				077B20A52AAF37E500AB1B31 /* Endpoint.swift in Sources */,
+				077B20B22AAF3E4100AB1B31 /* WeatherView.swift in Sources */,
 				077B20922AAF376600AB1B31 /* Weather_ChallengeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

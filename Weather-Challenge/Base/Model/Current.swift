@@ -10,16 +10,20 @@ import Foundation
 struct Current: Codable {
     let id: Int
     let name: String
-    let weather: [Weather]
+    let weather: [Weather]?
     let sys: Sys
-}
-
-struct Weather: Codable {
-    let id: Int
-    let main, description, icon: String
+    let main: Main
+    
+    
+    var weatherIcon: String {
+        guard let weather = weather else {
+            return "n/a"
+        }
+        return weather.first!.icon
+    }
     
     var iconImage: String {
-        mapIcons(icon: icon)
+        mapIcons(icon: weatherIcon)
     }
     
     func mapIcons(icon: String) -> String {
@@ -52,6 +56,11 @@ struct Weather: Codable {
             return "n/a"
         }
     }
+}
+
+struct Weather: Codable, Identifiable {
+    let id: Int
+    let main, description, icon: String
 }
 
 struct Sys: Codable {

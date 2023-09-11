@@ -13,6 +13,8 @@
 		077B20992AAF376600AB1B31 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 077B20982AAF376600AB1B31 /* Preview Assets.xcassets */; };
 		077B20A32AAF37D700AB1B31 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077B20A22AAF37D700AB1B31 /* NetworkingManager.swift */; };
 		077B20A52AAF37E500AB1B31 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077B20A42AAF37E500AB1B31 /* Endpoint.swift */; };
+		077B20AA2AAF3B7500AB1B31 /* Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077B20A92AAF3B7500AB1B31 /* Current.swift */; };
+		077B20B02AAF3D0700AB1B31 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077B20AF2AAF3D0700AB1B31 /* WeatherViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		077B20982AAF376600AB1B31 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		077B20A22AAF37D700AB1B31 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		077B20A42AAF37E500AB1B31 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		077B20A92AAF3B7500AB1B31 /* Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Current.swift; sourceTree = "<group>"; };
+		077B20AF2AAF3D0700AB1B31 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,7 @@
 		077B209F2AAF37B700AB1B31 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				077B20AC2AAF3CD700AB1B31 /* Weather */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -83,6 +88,7 @@
 		077B20A02AAF37BD00AB1B31 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				077B20A62AAF3AB900AB1B31 /* Model */,
 				077B20A12AAF37C500AB1B31 /* Networking */,
 			);
 			path = Base;
@@ -95,6 +101,38 @@
 				077B20A42AAF37E500AB1B31 /* Endpoint.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		077B20A62AAF3AB900AB1B31 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				077B20A92AAF3B7500AB1B31 /* Current.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		077B20AC2AAF3CD700AB1B31 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				077B20AE2AAF3CE600AB1B31 /* View */,
+				077B20AD2AAF3CDE00AB1B31 /* ViewModel */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		077B20AD2AAF3CDE00AB1B31 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				077B20AF2AAF3D0700AB1B31 /* WeatherViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		077B20AE2AAF3CE600AB1B31 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,6 +206,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				077B20A32AAF37D700AB1B31 /* NetworkingManager.swift in Sources */,
+				077B20B02AAF3D0700AB1B31 /* WeatherViewModel.swift in Sources */,
+				077B20AA2AAF3B7500AB1B31 /* Current.swift in Sources */,
 				077B20942AAF376600AB1B31 /* ContentView.swift in Sources */,
 				077B20A52AAF37E500AB1B31 /* Endpoint.swift in Sources */,
 				077B20922AAF376600AB1B31 /* Weather_ChallengeApp.swift in Sources */,

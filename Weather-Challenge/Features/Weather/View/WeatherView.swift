@@ -17,26 +17,7 @@ struct WeatherView: View {
             BackgroundView()
             
             if vm.currentWeather != nil {
-                VStack {
-                    Text("\(vm.currentWeather!.name), \(vm.currentWeather!.sys.country)")
-                        .font(.system(size: 32, weight: .medium))
-                        .foregroundColor(.white)
-                        .padding()
-                    
-                    VStack(spacing: 10) {
-                        Image(systemName: vm.currentWeather!.iconImage)
-                            .renderingMode(.original)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 180, height: 180)
-                        
-                        Text("\(vm.currentWeather!.main.tempText)°c")
-                            .font(.system(size: 50, weight: .medium))
-                            .foregroundColor(.white)
-                    }
-                    .padding(.bottom, 40)
-                    Spacer()
-                }
+                WeatherCurrentView(weather: vm.currentWeather!)
             }
         }
         .task {
@@ -57,5 +38,33 @@ struct BackgroundView: View {
     var body: some View {
         LinearGradient(gradient: Gradient(colors: [.blue, Color("lightBlue")]), startPoint: .topLeading, endPoint: .bottomTrailing)
             .edgesIgnoringSafeArea(.all)
+    }
+}
+
+struct WeatherCurrentView: View {
+    
+    let weather: Current
+    
+    var body: some View {
+        VStack {
+            Text("\(weather.name), \(weather.sys.country)")
+                .font(.system(size: 32, weight: .medium))
+                .foregroundColor(.white)
+                .padding()
+            
+            VStack(spacing: 10) {
+                Image(systemName: weather.iconImage)
+                    .renderingMode(.original)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 180, height: 180)
+                
+                Text("\(weather.main.tempText)°c")
+                    .font(.system(size: 50, weight: .medium))
+                    .foregroundColor(.white)
+            }
+            .padding(.bottom, 40)
+            Spacer()
+        }
     }
 }

@@ -52,7 +52,7 @@ struct WeatherCurrentView: View {
                 .foregroundColor(.white)
                 .padding()
             
-            VStack(spacing: 10) {
+            VStack(spacing: 30) {
                 Image(systemName: weather.iconImage)
                     .renderingMode(.original)
                     .resizable()

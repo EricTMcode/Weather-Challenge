@@ -9,8 +9,7 @@ import SwiftUI
 
 struct WeatherView: View {
     @StateObject private var vm = WeatherViewModel()
-    let lat: Double
-    let lon: Double
+    let city: String
     
     var body: some View {
         ZStack {
@@ -21,15 +20,14 @@ struct WeatherView: View {
             }
         }
         .task {
-            await vm.fetchCurrentWeather(lat: lat, lon: lon)
+            await vm.fetchCurrentWeather(city: city)
         }
     }
 }
 
 struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherView(lat: 37.32, lon: -122.03)
-        WeatherView(lat: 45.76, lon: 4.81)
+        WeatherView(city: "lyon")
     }
 }
 
@@ -47,19 +45,24 @@ struct WeatherCurrentView: View {
     
     var body: some View {
         VStack {
-            Text("\(weather.name), \(weather.sys.country)")
+            Text("\(weather.location.name), \(weather.location.country)")
                 .font(.system(size: 32, weight: .medium))
                 .foregroundColor(.white)
-                .padding()
+                .padding(.top)
+            
+            Text(weather.location.region)
+                .font(.system(size: 15, weight: .medium))
+                .foregroundColor(.white)
+                .padding(.bottom, 40)
             
             VStack(spacing: 30) {
-                Image(systemName: weather.iconImage)
+                Image(systemName: weather.current.condition.iconText)
                     .renderingMode(.original)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 180, height: 180)
                 
-                Text("\(weather.main.tempText)°c")
+                Text("\(weather.current.tempC)°c")
                     .font(.system(size: 50, weight: .medium))
                     .foregroundColor(.white)
             }

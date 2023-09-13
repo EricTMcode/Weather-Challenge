@@ -8,80 +8,40 @@
 import Foundation
 
 struct Current: Codable {
-    let id: Int
-    let name: String
-    let weather: [Weather]?
-    let sys: Sys
-    let main: Main
+    let location: Location
+    let current: CurrentClass
+}
+
+struct Location: Codable {
+    let name, region, country: String
+}
+
+struct CurrentClass: Codable {
+    let tempC: Int
+    let condition: Condition
     
-    
-    var weatherIcon: String {
-        guard let weather = weather else {
-            return "n/a"
-        }
-        return weather.first!.icon
+    enum CodingKeys: String, CodingKey {
+        case tempC = "temp_c"
+        case condition
     }
+}
+
+struct Condition: Codable {
+    let code: Int
+    let text: String
     
-    var iconImage: String {
-        mapIcons(icon: weatherIcon)
+    var iconText: String {
+        mapIcons(icon: text)
     }
     
     func mapIcons(icon: String) -> String {
-        switch icon {
-        case "01d":
-            return "sun.max.fill"
-        case "01n":
-            return "moon.fill"
-        case "02d":
-            return "cloud.sun.fill"
-        case "02n":
-            return "cloud.moon.fill"
-        case "03d", "03n":
-            return "cloud.fill"
-        case "04d", "04m":
-            return "smoke.fill"
-        case "09d", "09n":
-            return "cloud.heavyrain.fill"
-        case "10d":
-            return "cloud.sun.rain.fill"
-        case "10n":
-            return "cloud.moon.rain.fill"
-        case "11d", "11n":
-            return "cloud.bolt.fill"
-        case "13d", "13n":
-            return "snow"
-        case "50d", "50n":
-            return "wind"
+        switch text {
+        case "Moderate or heavy rain with thunder":
+            return "cloud.bolt.rain.fill"
         default:
-            return "n/a"
+            return "cloud"
         }
     }
-}
-
-struct Weather: Codable, Identifiable {
-    let id: Int
-    let main, description, icon: String
-}
-
-struct Sys: Codable {
-    let type, id: Int
-    let country: String
-    let sunrise, sunset: Int
-}
-
-struct Main: Codable {
-    let temp, feelsLike, tempMin, tempMax: Double
-    let pressure, humidity: Int
-
-    enum CodingKeys: String, CodingKey {
-        case temp
-        case feelsLike = "feels_like"
-        case tempMin = "temp_min"
-        case tempMax = "temp_max"
-        case pressure, humidity
-    }
     
-    var tempText: Int {
-        return Int(temp.rounded())
-    }
+    
 }

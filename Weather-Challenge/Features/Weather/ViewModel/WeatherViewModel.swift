@@ -14,11 +14,11 @@ final class WeatherViewModel: ObservableObject {
     @Published var hasError = false
     
     @MainActor
-    func fetchCurrentWeather(lat: Double, lon: Double) async {
+    func fetchCurrentWeather(city: String) async {
         viewState = .loading
         defer { viewState = .finished }
         do {
-            self.currentWeather = try await NetworkingManager.shared.request(.weather(lat: lat, lon: lon), type: nil)
+            self.currentWeather = try await NetworkingManager.shared.request(.weather(city: city), type: nil)
         } catch {
             self.hasError = true
             if let networkingError = error as? NetworkingManager.NetworkingError {

@@ -11,7 +11,7 @@ import SwiftUI
 struct Weather_ChallengeApp: App {
     var body: some Scene {
         WindowGroup {
-            WeatherView(lat: 37.32, lon: -122.03)
+            WeatherView(city: "lyon")
         }
     }
 }

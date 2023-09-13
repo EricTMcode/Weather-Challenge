@@ -8,7 +8,7 @@
 import Foundation
 
 enum Endpoint {
-    case weather(lat: Double, lon: Double)
+    case weather(city: String)
 }
 
 extension Endpoint {
@@ -18,12 +18,12 @@ extension Endpoint {
 }
 
 extension Endpoint {
-    var host: String { "api.openweathermap.org"}
+    var host: String { "api.weatherapi.com"}
     
     var path: String {
         switch self {
         case .weather:
-            return "/data/2.5/weather"
+            return "/v1/current.json"
         }
     }
     
@@ -36,8 +36,8 @@ extension Endpoint {
     
     var queryItems: [String: String] {
         switch self {
-        case .weather(let lat, let lon):
-            return ["lat":"\(lat)", "lon": "\(lon)"]
+        case .weather(let city):
+            return ["q":"\(city)"]
         }
     }
 }
@@ -49,8 +49,7 @@ extension Endpoint {
         urlComponents.host = host
         urlComponents.path = path
         
-        let staticQueryItems = [URLQueryItem(name: "appid", value: "fd6e851964b08e0568183d2a7c65793b"),
-                                URLQueryItem(name: "units", value: "metric")]
+        let staticQueryItems = [URLQueryItem(name: "key", value: "d2ec8535bd3844b5b1d130828231309")]
         
         let requestQueryItems = queryItems.compactMap { item in
             URLQueryItem(name: item.key, value: item.value)

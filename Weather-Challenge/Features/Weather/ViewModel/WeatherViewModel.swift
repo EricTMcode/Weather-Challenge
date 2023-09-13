@@ -8,7 +8,7 @@
 import Foundation
 
 final class WeatherViewModel: ObservableObject {
-    @Published private(set) var currentWeather: Current?
+    @Published private(set) var currentWeather: weatherForecast?
     @Published private(set) var error: NetworkingManager.NetworkingError?
     @Published private(set) var viewState: ViewState?
     @Published var hasError = false

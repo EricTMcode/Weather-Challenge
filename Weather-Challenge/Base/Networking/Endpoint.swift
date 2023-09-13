@@ -23,7 +23,7 @@ extension Endpoint {
     var path: String {
         switch self {
         case .weather:
-            return "/v1/current.json"
+            return "/v1/forecast.json"
         }
     }
     
@@ -49,7 +49,8 @@ extension Endpoint {
         urlComponents.host = host
         urlComponents.path = path
         
-        let staticQueryItems = [URLQueryItem(name: "key", value: "d2ec8535bd3844b5b1d130828231309")]
+        let staticQueryItems = [URLQueryItem(name: "key", value: "d2ec8535bd3844b5b1d130828231309"),
+                                URLQueryItem(name: "days", value: "5")]
         
         let requestQueryItems = queryItems.compactMap { item in
             URLQueryItem(name: item.key, value: item.value)

@@ -17,6 +17,12 @@ struct WeatherView: View {
             
             if vm.currentWeather != nil {
                 WeatherCurrentView(weather: vm.currentWeather!)
+                
+                VStack {
+                    ForEach((vm.currentWeather?.forecast.forecastDay)!, id: \.self) { day in
+                        Text(day.date)
+                    }
+                }
             }
         }
         .task {
@@ -27,7 +33,7 @@ struct WeatherView: View {
 
 struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherView(city: "lyon")
+        WeatherView(city: "Lyon")
     }
 }
 
@@ -41,14 +47,15 @@ struct BackgroundView: View {
 
 struct WeatherCurrentView: View {
     
-    let weather: Current
+    let weather: weatherForecast
     
     var body: some View {
         VStack {
             Text("\(weather.location.name), \(weather.location.country)")
                 .font(.system(size: 32, weight: .medium))
                 .foregroundColor(.white)
-                .padding(.top)
+                .padding([.top, .leading, .trailing])
+                .lineLimit(1)
             
             Text(weather.location.region)
                 .font(.system(size: 15, weight: .medium))

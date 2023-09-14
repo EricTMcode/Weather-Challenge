@@ -42,7 +42,7 @@ struct WeatherView: View {
 struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
         WeatherView(city: "Lyon")
-        WeatherView(city: "Cupertino")
+        WeatherView(city: "Brisbane")
     }
 }
 

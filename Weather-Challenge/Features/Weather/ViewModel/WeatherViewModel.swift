@@ -18,7 +18,7 @@ final class WeatherViewModel: ObservableObject {
         viewState = .loading
         defer { viewState = .finished }
         do {
-            self.currentWeather = try await NetworkingManager.shared.request(.weather(city: city), type: nil)
+            self.currentWeather = try await NetworkingManager.shared.request(.weather(city: city))
         } catch {
             self.hasError = true
             if let networkingError = error as? NetworkingManager.NetworkingError {

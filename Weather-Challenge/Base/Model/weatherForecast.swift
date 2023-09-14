@@ -58,14 +58,14 @@ struct Condition: Codable, Hashable {
 }
 
 struct Forecast: Codable {
-    let forecastDay: [Forecastday]
+    let forecastDay: [ForecastDay]
     
     enum CodingKeys: String, CodingKey {
         case forecastDay = "forecastday"
     }
 }
 
-struct Forecastday: Codable, Hashable {
+struct ForecastDay: Codable, Hashable {
     let date: String
     let day: Day
     
@@ -76,18 +76,23 @@ struct Forecastday: Codable, Hashable {
     }()
     
     var dateText: String {
-        let date = Forecastday.dateFormatter.date(from: date)
+        let date = ForecastDay.dateFormatter.date(from: date)
         return date!.formatted(.dateTime.weekday(.abbreviated))
     }
 }
 
 struct Day: Codable, Hashable {
-//    let maxtempC, mintempC: Double
     let condition: Condition
+    let maxtemp_c: Double
     
-    enum CondingKeys: String, CodingKey {
-        case maxtempC = "maxtemp_c"
-        case mintempC = "mintemp_c"
-        case condition
+    var tempText: Int {
+        return Int(maxtemp_c.rounded())
     }
+    
+    
+//    enum CondingKeys: String, CodingKey {
+//        case maxtempC = "maxtemp_c"
+//        case mintempC = "mintemp_c"
+//        case condition
+//    }
 }

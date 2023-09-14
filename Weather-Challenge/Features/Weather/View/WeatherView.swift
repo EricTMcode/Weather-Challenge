@@ -14,7 +14,6 @@ struct WeatherView: View {
     var body: some View {
         ZStack {
             BackgroundView()
-            
             VStack {
                 if vm.currentWeather != nil {
                     WeatherCurrentView(weather: vm.currentWeather!)
@@ -91,7 +90,7 @@ struct WeatherForecastView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 40, height: 40)
-                    Text("30°")
+                    Text("\(day.day.tempText)°")
                         .font(.system(size: 28, weight: .medium))
                         .foregroundColor(.white)
                 }

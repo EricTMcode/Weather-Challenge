@@ -9,13 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        TabView {
+            WeatherView(city: "Lyon")
+                .tabItem {
+                    Label("Lyon", systemImage: "sun.max.fill")
+                }
+            WeatherView(city: "Brisbane")
+                .tabItem {
+                    Label("Brisbane", systemImage: "moon.fill")
+                }
+            WeatherView(city: "London")
+                .tabItem {
+                    Label("London", systemImage: "cloud.heavyrain.fill")
+                }
+            WeatherView(city: "Tokyo")
+                .tabItem {
+                    Label("Tokyo", systemImage: "snow")
+                }
         }
-        .padding()
     }
 }
 

@@ -88,11 +88,4 @@ struct Day: Codable, Hashable {
     var tempText: Int {
         return Int(maxtemp_c.rounded())
     }
-    
-    
-//    enum CondingKeys: String, CodingKey {
-//        case maxtempC = "maxtemp_c"
-//        case mintempC = "mintemp_c"
-//        case condition
-//    }
 }

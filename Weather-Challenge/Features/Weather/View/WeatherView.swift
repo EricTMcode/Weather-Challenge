@@ -15,13 +15,10 @@ struct WeatherView: View {
         ZStack {
             BackgroundView()
             
-            if vm.currentWeather != nil {
-                WeatherCurrentView(weather: vm.currentWeather!)
-                
-                VStack {
-                    ForEach((vm.currentWeather?.forecast.forecastDay)!, id: \.self) { day in
-                        Text(day.date)
-                    }
+            VStack {
+                if vm.currentWeather != nil {
+                    WeatherCurrentView(weather: vm.currentWeather!)
+                    WeatherForecastView(weather: vm.currentWeather!)
                 }
             }
         }
@@ -58,7 +55,7 @@ struct WeatherCurrentView: View {
                 .lineLimit(1)
             
             Text(weather.location.region)
-                .font(.system(size: 15, weight: .medium))
+                .font(.system(size: 16, weight: .medium))
                 .foregroundColor(.white)
                 .padding(.bottom, 40)
             
@@ -74,7 +71,32 @@ struct WeatherCurrentView: View {
                     .foregroundColor(.white)
             }
             .padding(.bottom, 40)
-            Spacer()
         }
+    }
+}
+
+struct WeatherForecastView: View {
+    
+    let weather: weatherForecast
+    
+    var body: some View {
+        HStack(spacing: 20) {
+            ForEach((weather.forecast.forecastDay), id: \.self) { day in
+                VStack {
+                    Text(day.dateText.uppercased())
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(.white)
+                    Image(systemName: day.day.condition.iconText)
+                        .renderingMode(.original)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
+                    Text("30°")
+                        .font(.system(size: 28, weight: .medium))
+                        .foregroundColor(.white)
+                }
+            }
+        }
+        Spacer()
     }
 }

@@ -27,7 +27,7 @@ struct Current: Codable {
     }
 }
 
-struct Condition: Codable {
+struct Condition: Codable, Hashable {
     let code: Int
     let text: String
     
@@ -41,6 +41,14 @@ struct Condition: Codable {
             return "sun.max.fill"
         case "Clear":
             return "moon.fill"
+        case "Partly cloudy":
+            return "cloud.sun.fill"
+        case "Moderate rain":
+            return "cloud.rain.fill"
+        case "Heavy rain":
+            return "cloud.heavyrain.fill"
+        case "Overcast":
+            return "cloud.fill"
         case "Moderate or heavy rain with thunder":
             return "cloud.bolt.rain.fill"
         default:
@@ -59,10 +67,22 @@ struct Forecast: Codable {
 
 struct Forecastday: Codable, Hashable {
     let date: String
+    let day: Day
+    
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyy-mm-dd"
+        return dateFormatter
+    }()
+    
+    var dateText: String {
+        let date = Forecastday.dateFormatter.date(from: date)
+        return date!.formatted(.dateTime.weekday(.abbreviated))
+    }
 }
 
-struct Day: Codable {
-    let maxtempC, mintempC: Double
+struct Day: Codable, Hashable {
+//    let maxtempC, mintempC: Double
     let condition: Condition
     
     enum CondingKeys: String, CodingKey {

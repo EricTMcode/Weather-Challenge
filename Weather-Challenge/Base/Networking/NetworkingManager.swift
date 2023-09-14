@@ -29,6 +29,7 @@ final class NetworkingManager {
             throw NetworkingError.invalidStatusCode(statusCode: statusCode)
         }
         
+        
         let decoder = JSONDecoder()
         let decodedData = try decoder.decode(T.self, from: data)
         return decodedData
@@ -50,8 +51,8 @@ extension NetworkingManager.NetworkingError {
         switch self {
         case .invalidUrl:
             return "URL isn't valid"
-        case .invalidStatusCode:
-            return "Status code falls into the wrong range"
+        case .invalidStatusCode(let statusCode):
+            return "Status code falls into the wrong range: \(statusCode)"
         case .invalidData:
             return "Response data is invalid"
         case .failedToDecode:

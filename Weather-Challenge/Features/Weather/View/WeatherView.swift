@@ -24,12 +24,25 @@ struct WeatherView: View {
         .task {
             await vm.fetchCurrentWeather(city: city)
         }
+        .overlay {
+            if vm.viewState == .loading {
+                ProgressView()
+            }
+        }
+        .alert(isPresented: $vm.hasError, error: vm.error) {
+            Button("Retry") {
+                Task {
+                    await vm.fetchCurrentWeather(city: city)
+                }
+            }
+        }
     }
 }
 
 struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
         WeatherView(city: "Lyon")
+        WeatherView(city: "Madrid")
     }
 }
 

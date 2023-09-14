@@ -23,7 +23,7 @@ extension Endpoint {
     var path: String {
         switch self {
         case .weather:
-            return "/v1/forecaster.json"
+            return "/v1/forecast.json"
         }
     }
     

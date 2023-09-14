@@ -13,9 +13,9 @@ struct WeatherView: View {
     
     var body: some View {
         ZStack {
-            BackgroundView()
+            if vm.currentWeather != nil {
+            BackgroundView(isNight: vm.currentWeather!.isNight)
             VStack {
-                if vm.currentWeather != nil {
                     WeatherCurrentView(weather: vm.currentWeather!)
                     WeatherForecastView(weather: vm.currentWeather!)
                 }
@@ -42,14 +42,16 @@ struct WeatherView: View {
 struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
         WeatherView(city: "Lyon")
-        WeatherView(city: "Madrid")
+        WeatherView(city: "Cupertino")
     }
 }
 
 struct BackgroundView: View {
     
+    let isNight: Bool
+    
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [.blue, Color("lightBlue")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        LinearGradient(gradient: Gradient(colors: [isNight ? .black : .blue, isNight ? .gray : Color("lightBlue")]), startPoint: .topLeading, endPoint: .bottomTrailing)
             .edgesIgnoringSafeArea(.all)
     }
 }
@@ -78,7 +80,7 @@ struct WeatherCurrentView: View {
                     .scaledToFit()
                     .frame(width: 180, height: 180)
                 
-                Text("\(weather.current.tempC)°c")
+                Text("\(weather.current.tempText)°c")
                     .font(.system(size: 50, weight: .medium))
                     .foregroundColor(.white)
             }

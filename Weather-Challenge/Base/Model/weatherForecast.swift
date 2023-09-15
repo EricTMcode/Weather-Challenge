@@ -15,6 +15,15 @@ struct weatherForecast: Codable {
     var isNight: Bool {
         return current.isNightBool
     }
+    
+    var iconText: String {
+        return current.condition.iconText
+    }
+    
+    var tempText: Int {
+        Int(current.tempC)
+    }
+    
 }
 
 struct Location: Codable {
@@ -32,9 +41,6 @@ struct Current: Codable {
         case condition
     }
     
-    var tempText: Int {
-        Int(tempC)
-    }
     
     var isNightBool: Bool {
         switch isDay {
@@ -98,6 +104,15 @@ struct ForecastDay: Codable, Hashable {
         let date = ForecastDay.dateFormatter.date(from: date)
         return date!.formatted(.dateTime.weekday(.abbreviated))
     }
+    
+    var iconText: String {
+        return day.condition.iconText
+    }
+    
+    var tempText: Int {
+        return Int(day.tempC.rounded())
+    }
+
 }
 
 struct Day: Codable, Hashable {
@@ -107,9 +122,5 @@ struct Day: Codable, Hashable {
     enum CodingKeys: String, CodingKey {
         case tempC = "maxtemp_c"
         case condition
-    }
-    
-    var tempText: Int {
-        return Int(tempC.rounded())
     }
 }

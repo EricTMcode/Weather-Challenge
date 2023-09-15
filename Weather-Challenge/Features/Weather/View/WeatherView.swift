@@ -42,7 +42,7 @@ struct WeatherView: View {
 struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
         WeatherView(city: "Lyon")
-        WeatherView(city: "Brisbane")
+        WeatherView(city: "Tokyo")
     }
 }
 
@@ -74,13 +74,13 @@ struct WeatherCurrentView: View {
                 .padding(.bottom, 40)
             
             VStack(spacing: 30) {
-                Image(systemName: weather.current.condition.iconText)
+                Image(systemName: weather.iconText)
                     .renderingMode(.original)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 180, height: 180)
                 
-                Text("\(weather.current.tempText)°c")
+                Text("\(weather.tempText)°c")
                     .font(.system(size: 50, weight: .medium))
                     .foregroundColor(.white)
             }
@@ -100,12 +100,12 @@ struct WeatherForecastView: View {
                     Text(day.dateText.uppercased())
                         .font(.system(size: 16, weight: .medium))
                         .foregroundColor(.white)
-                    Image(systemName: day.day.condition.iconText)
+                    Image(systemName: day.iconText)
                         .renderingMode(.original)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 40, height: 40)
-                    Text("\(day.day.tempText)°")
+                    Text("\(day.tempText)°")
                         .font(.system(size: 28, weight: .medium))
                         .foregroundColor(.white)
                 }

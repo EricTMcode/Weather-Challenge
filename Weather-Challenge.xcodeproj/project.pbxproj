@@ -61,10 +61,9 @@
 		077B20902AAF376600AB1B31 /* Weather-Challenge */ = {
 			isa = PBXGroup;
 			children = (
+				078F70542AB34AD000DE8908 /* App */,
 				077B209F2AAF37B700AB1B31 /* Features */,
 				077B20A02AAF37BD00AB1B31 /* Base */,
-				077B20912AAF376600AB1B31 /* Weather_ChallengeApp.swift */,
-				077B20932AAF376600AB1B31 /* ContentView.swift */,
 				077B20952AAF376600AB1B31 /* Assets.xcassets */,
 				077B20972AAF376600AB1B31 /* Preview Content */,
 			);
@@ -136,6 +135,15 @@
 				077B20B12AAF3E4100AB1B31 /* WeatherView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		078F70542AB34AD000DE8908 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				077B20912AAF376600AB1B31 /* Weather_ChallengeApp.swift */,
+				077B20932AAF376600AB1B31 /* ContentView.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

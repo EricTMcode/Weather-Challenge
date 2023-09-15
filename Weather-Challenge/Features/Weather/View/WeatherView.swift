@@ -74,7 +74,7 @@ struct WeatherCurrentView: View {
                 .padding(.bottom, 40)
             
             VStack(spacing: 30) {
-                Image(systemName: weather.iconText)
+                Image(systemName: (weather.current.isNightBool ? WeatherIconsNighttime[weather.current.condition.code] : WeatherIconsDaytime[weather.current.condition.code]) ?? "n/a" )
                     .renderingMode(.original)
                     .resizable()
                     .scaledToFit()
@@ -95,12 +95,14 @@ struct WeatherForecastView: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            ForEach((weather.forecast.forecastDay), id: \.self) { day in
+            ForEach(weather.forecast.forecastDay, id: \.date) { day in
                 VStack {
                     Text(day.dateText.uppercased())
                         .font(.system(size: 16, weight: .medium))
                         .foregroundColor(.white)
-                    Image(systemName: day.iconText)
+                    Text(day.dayText)
+                    
+                    Image(systemName: WeatherIconsDaytime[day.day.condition.code] ?? "n/a")
                         .renderingMode(.original)
                         .resizable()
                         .scaledToFit()

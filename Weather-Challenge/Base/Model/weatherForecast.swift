@@ -56,6 +56,7 @@ struct Condition: Codable, Hashable {
     let code: Int
     let text: String
     
+    
     var iconText: String {
         mapIcons(icon: text)
     }
@@ -96,7 +97,7 @@ struct ForecastDay: Codable, Hashable {
     
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyy-mm-dd"
+        dateFormatter.dateFormat = "yyyy-mm-dd"
         return dateFormatter
     }()
     
@@ -104,6 +105,11 @@ struct ForecastDay: Codable, Hashable {
         let date = ForecastDay.dateFormatter.date(from: date)
         return date!.formatted(.dateTime.weekday(.abbreviated))
     }
+    var dayText: String {
+        let date = ForecastDay.dateFormatter.date(from: date)
+        return date!.formatted(.dateTime.day())
+    }
+    
     
     var iconText: String {
         return day.condition.iconText

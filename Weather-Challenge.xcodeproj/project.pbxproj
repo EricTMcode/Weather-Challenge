@@ -16,6 +16,7 @@
 		077B20AA2AAF3B7500AB1B31 /* weatherForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077B20A92AAF3B7500AB1B31 /* weatherForecast.swift */; };
 		077B20B02AAF3D0700AB1B31 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077B20AF2AAF3D0700AB1B31 /* WeatherViewModel.swift */; };
 		077B20B22AAF3E4100AB1B31 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077B20B12AAF3E4100AB1B31 /* WeatherView.swift */; };
+		078F70572AB49DC900DE8908 /* SFSymbols-WeatherIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078F70562AB49DC900DE8908 /* SFSymbols-WeatherIcons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		077B20A92AAF3B7500AB1B31 /* weatherForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weatherForecast.swift; sourceTree = "<group>"; };
 		077B20AF2AAF3D0700AB1B31 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		077B20B12AAF3E4100AB1B31 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		078F70562AB49DC900DE8908 /* SFSymbols-WeatherIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SFSymbols-WeatherIcons.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		077B20A02AAF37BD00AB1B31 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				078F70552AB49DB900DE8908 /* Helpers */,
 				077B20A62AAF3AB900AB1B31 /* Model */,
 				077B20A12AAF37C500AB1B31 /* Networking */,
 			);
@@ -144,6 +147,14 @@
 				077B20932AAF376600AB1B31 /* ContentView.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		078F70552AB49DB900DE8908 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				078F70562AB49DC900DE8908 /* SFSymbols-WeatherIcons.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +229,7 @@
 			files = (
 				077B20A32AAF37D700AB1B31 /* NetworkingManager.swift in Sources */,
 				077B20B02AAF3D0700AB1B31 /* WeatherViewModel.swift in Sources */,
+				078F70572AB49DC900DE8908 /* SFSymbols-WeatherIcons.swift in Sources */,
 				077B20AA2AAF3B7500AB1B31 /* weatherForecast.swift in Sources */,
 				077B20942AAF376600AB1B31 /* ContentView.swift in Sources */,
 				077B20A52AAF37E500AB1B31 /* Endpoint.swift in Sources */,

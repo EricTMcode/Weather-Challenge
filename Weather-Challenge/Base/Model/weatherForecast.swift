@@ -16,12 +16,20 @@ struct weatherForecast: Codable {
         return current.isNightBool
     }
     
-    var iconText: String {
-        return current.condition.iconText
-    }
-    
     var tempText: Int {
         Int(current.tempC)
+    }
+    
+    var iconText: String {
+        if isNight {
+            return current.condition.iconNightText
+        } else {
+            return current.condition.iconDayText
+        }
+    }
+    
+    var forecastIconText: String {
+        return current.condition.iconDayText
     }
     
 }
@@ -56,30 +64,12 @@ struct Condition: Codable, Hashable {
     let code: Int
     let text: String
     
-    
-    var iconText: String {
-        mapIcons(icon: text)
+    var iconDayText: String {
+        return WeatherIconsDaytime[code] ?? "N/A"
     }
     
-    func mapIcons(icon: String) -> String {
-        switch text {
-        case "Sunny":
-            return "sun.max.fill"
-        case "Clear":
-            return "moon.fill"
-        case "Partly cloudy":
-            return "cloud.sun.fill"
-        case "Moderate rain":
-            return "cloud.rain.fill"
-        case "Heavy rain":
-            return "cloud.heavyrain.fill"
-        case "Overcast":
-            return "cloud.fill"
-        case "Moderate or heavy rain with thunder":
-            return "cloud.bolt.rain.fill"
-        default:
-            return "cloud"
-        }
+    var iconNightText: String {
+        return WeatherIconsNighttime[code] ?? "N/A"
     }
 }
 
@@ -110,15 +100,14 @@ struct ForecastDay: Codable, Hashable {
         return date!.formatted(.dateTime.day())
     }
     
-    
-    var iconText: String {
-        return day.condition.iconText
-    }
-    
     var tempText: Int {
         return Int(day.tempC.rounded())
     }
-
+    
+    var iconText: String {
+        return day.condition.iconDayText
+    }
+    
 }
 
 struct Day: Codable, Hashable {

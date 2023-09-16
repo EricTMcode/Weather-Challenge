@@ -74,7 +74,7 @@ struct WeatherCurrentView: View {
                 .padding(.bottom, 40)
             
             VStack(spacing: 30) {
-                Image(systemName: (weather.current.isNightBool ? WeatherIconsNighttime[weather.current.condition.code] : WeatherIconsDaytime[weather.current.condition.code]) ?? "n/a" )
+                Image(systemName: weather.iconText)
                     .renderingMode(.original)
                     .resizable()
                     .scaledToFit()
@@ -102,7 +102,7 @@ struct WeatherForecastView: View {
                         .foregroundColor(.white)
                     Text(day.dayText)
                     
-                    Image(systemName: WeatherIconsDaytime[day.day.condition.code] ?? "n/a")
+                    Image(systemName: day.iconText)
                         .renderingMode(.original)
                         .resizable()
                         .scaledToFit()

@@ -31,7 +31,6 @@ struct weatherForecast: Codable {
     var forecastIconText: String {
         return current.condition.iconDayText
     }
-    
 }
 
 struct Location: Codable {
@@ -87,7 +86,7 @@ struct ForecastDay: Codable, Hashable {
     
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-mm-dd"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter
     }()
     
@@ -95,6 +94,7 @@ struct ForecastDay: Codable, Hashable {
         let date = ForecastDay.dateFormatter.date(from: date)
         return date!.formatted(.dateTime.weekday(.abbreviated))
     }
+    
     var dayText: String {
         let date = ForecastDay.dateFormatter.date(from: date)
         return date!.formatted(.dateTime.day())

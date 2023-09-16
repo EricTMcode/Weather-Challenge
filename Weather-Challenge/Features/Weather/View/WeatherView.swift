@@ -14,8 +14,8 @@ struct WeatherView: View {
     var body: some View {
         ZStack {
             if vm.currentWeather != nil {
-            BackgroundView(isNight: vm.currentWeather!.isNight)
-            VStack {
+                BackgroundView(isNight: vm.currentWeather!.isNight)
+                VStack {
                     WeatherCurrentView(weather: vm.currentWeather!)
                     WeatherForecastView(weather: vm.currentWeather!)
                 }
@@ -100,7 +100,6 @@ struct WeatherForecastView: View {
                     Text(day.dateText.uppercased())
                         .font(.system(size: 16, weight: .medium))
                         .foregroundColor(.white)
-                    Text(day.dayText)
                     
                     Image(systemName: day.iconText)
                         .renderingMode(.original)

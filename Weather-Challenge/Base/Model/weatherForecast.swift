@@ -48,7 +48,6 @@ struct Current: Codable {
         case condition
     }
     
-    
     var isNightBool: Bool {
         switch isDay {
         case 0:
@@ -78,16 +77,31 @@ struct Forecast: Codable {
     enum CodingKeys: String, CodingKey {
         case forecastDay = "forecastday"
     }
+    
+    var maxTempDayText: Int {
+        return forecastDay.first?.maxDayTempText ?? 0
+    }
+    
+    var minTempDayText: Int {
+        return forecastDay.first?.minDayTempText ?? 0
+    }
 }
 
 struct ForecastDay: Codable, Hashable {
     let date: String
     let day: Day
+    let hour: [Hour]
     
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter
+    }()
+    
+    static let timeFormatter: DateFormatter = {
+       let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        return timeFormatter
     }()
     
     var dateText: String {
@@ -100,8 +114,12 @@ struct ForecastDay: Codable, Hashable {
         return date!.formatted(.dateTime.day())
     }
     
-    var tempText: Int {
-        return Int(day.tempC.rounded())
+    var maxDayTempText: Int {
+        return Int(day.maxTempC.rounded())
+    }
+    
+    var minDayTempText: Int {
+        return Int(day.minTempC.rounded())
     }
     
     var iconText: String {
@@ -112,10 +130,31 @@ struct ForecastDay: Codable, Hashable {
 
 struct Day: Codable, Hashable {
     let condition: Condition
-    let tempC: Double
+    let maxTempC: Double
+    let minTempC: Double
     
     enum CodingKeys: String, CodingKey {
-        case tempC = "maxtemp_c"
         case condition
+        case maxTempC = "maxtemp_c"
+        case minTempC = "mintemp_c"
+    }
+}
+
+struct Hour: Codable, Hashable {
+    let time: String
+    let tempC: Double
+    let isDay: Int
+    let condition: Condition
+    
+    enum CodingKeys: String, CodingKey {
+        case time
+        case tempC = "temp_c"
+        case isDay = "is_day"
+        case condition
+    }
+    
+    var timeText: String {
+        let time = ForecastDay.timeFormatter.date(from: time)
+        return time!.formatted(.dateTime.hour())
     }
 }

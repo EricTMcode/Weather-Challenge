@@ -18,6 +18,31 @@ struct WeatherView: View {
                 VStack {
                     WeatherCurrentView(weather: vm.currentWeather!)
                     WeatherForecastView(weather: vm.currentWeather!)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        LazyHStack(spacing: 25) {
+                            ForEach(vm.currentWeather!.forecast.forecastDay, id: \.self) { hour in
+                                ForEach(hour.hour, id: \.self) { hour in
+                                    VStack {
+                                        Text(hour.timeText)
+                                        Image(systemName: hour.condition.iconDayText)
+                                            .renderingMode(.original)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 40, height: 40)
+                                        Text("\(Int(hour.tempC.rounded()))°")
+                                    }
+                                    .foregroundColor(.white)
+                                    .fontWeight(.medium)
+                                }
+                            }
+                        }
+                        
+                    }
+                    .padding()
+                    .background(.blue.opacity(0.2))
+                    .cornerRadius(20)
+                    .padding()
                 }
             }
         }
@@ -43,6 +68,7 @@ struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
         WeatherView(city: "Lyon")
         WeatherView(city: "Tokyo")
+        WeatherView(city: "Cupertino")
     }
 }
 
@@ -67,24 +93,30 @@ struct WeatherCurrentView: View {
                 .foregroundColor(.white)
                 .padding([.top, .leading, .trailing])
                 .lineLimit(1)
+                .minimumScaleFactor(1)
             
             Text(weather.location.region)
                 .font(.system(size: 16, weight: .medium))
                 .foregroundColor(.white)
-                .padding(.bottom, 40)
+                .padding(.bottom, 20)
             
-            VStack(spacing: 30) {
+            VStack(spacing: 0) {
                 Image(systemName: weather.iconText)
                     .renderingMode(.original)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 180, height: 180)
                 
-                Text("\(weather.tempText)°c")
+                Text("\(weather.tempText)°")
                     .font(.system(size: 50, weight: .medium))
                     .foregroundColor(.white)
+                
+                HStack {
+                    MinMaxDayView(image: "arrow.up", temp: weather.forecast.maxTempDayText)
+                    MinMaxDayView(image: "arrow.down", temp: weather.forecast.minTempDayText)
+                }
             }
-            .padding(.bottom, 40)
+            .padding(.bottom, 50)
         }
     }
 }
@@ -106,12 +138,27 @@ struct WeatherForecastView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 40, height: 40)
-                    Text("\(day.tempText)°")
+                    Text("\(day.maxDayTempText)°")
                         .font(.system(size: 28, weight: .medium))
                         .foregroundColor(.white)
                 }
             }
         }
         Spacer()
+    }
+}
+
+struct MinMaxDayView: View {
+    
+    let image: String
+    let temp: Int
+    
+    var body: some View {
+        HStack(spacing: 2) {
+            Image(systemName: image)
+            Text("\(temp)°")
+        }
+        .font(.system(size: 15))
+        .foregroundColor(.white)
     }
 }

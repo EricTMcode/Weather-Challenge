@@ -18,31 +18,7 @@ struct WeatherView: View {
                 VStack {
                     WeatherCurrentView(weather: vm.currentWeather!)
                     WeatherForecastView(weather: vm.currentWeather!)
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        LazyHStack(spacing: 25) {
-                            ForEach(vm.currentWeather!.forecast.forecastDay, id: \.self) { hour in
-                                ForEach(hour.hour, id: \.self) { hour in
-                                    VStack {
-                                        Text(hour.timeText)
-                                        Image(systemName: hour.condition.iconDayText)
-                                            .renderingMode(.original)
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 40, height: 40)
-                                        Text("\(Int(hour.tempC.rounded()))°")
-                                    }
-                                    .foregroundColor(.white)
-                                    .fontWeight(.medium)
-                                }
-                            }
-                        }
-                        
-                    }
-                    .padding()
-                    .background(.blue.opacity(0.2))
-                    .cornerRadius(20)
-                    .padding()
+                    WeatherTimeView(weather: vm.currentWeather!)
                 }
             }
         }
@@ -160,5 +136,37 @@ struct MinMaxDayView: View {
         }
         .font(.system(size: 15))
         .foregroundColor(.white)
+    }
+}
+
+struct WeatherTimeView: View {
+    
+    let weather: weatherForecast
+    
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyHStack(spacing: 25) {
+                ForEach(weather.forecast.forecastDay, id: \.self) { hour in
+                    ForEach(hour.hour, id: \.self) { hour in
+                        VStack {
+                            Text(hour.timeText)
+                            Image(systemName: hour.condition.iconDayText)
+                                .renderingMode(.original)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40, height: 40)
+                            Text("\(Int(hour.tempC.rounded()))°")
+                        }
+                        .foregroundColor(.white)
+                        .fontWeight(.medium)
+                    }
+                }
+            }
+            
+        }
+        .padding()
+        .background(.blue.opacity(0.2))
+        .cornerRadius(20)
+        .padding()
     }
 }

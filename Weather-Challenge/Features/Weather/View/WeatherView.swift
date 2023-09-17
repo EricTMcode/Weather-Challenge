@@ -15,10 +15,12 @@ struct WeatherView: View {
         ZStack {
             if vm.currentWeather != nil {
                 BackgroundView(isNight: vm.currentWeather!.isNight)
-                VStack {
-                    WeatherCurrentView(weather: vm.currentWeather!)
-                    WeatherForecastView(weather: vm.currentWeather!)
-                    WeatherTimeView(weather: vm.currentWeather!)
+                ScrollView {
+                    VStack {
+                        WeatherCurrentView(weather: vm.currentWeather!)
+                        WeatherForecastView(weather: vm.currentWeather!)
+                        WeatherTimeView(weather: vm.currentWeather!)
+                    }
                 }
             }
         }
@@ -76,12 +78,12 @@ struct WeatherCurrentView: View {
                 .foregroundColor(.white)
                 .padding(.bottom, 20)
             
-            VStack(spacing: 0) {
+            VStack(spacing: 15) {
                 Image(systemName: weather.iconText)
                     .renderingMode(.original)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 180, height: 180)
+                    .frame(width: 140, height: 140)
                 
                 Text("\(weather.tempText)°")
                     .font(.system(size: 50, weight: .medium))
@@ -92,7 +94,7 @@ struct WeatherCurrentView: View {
                     MinMaxDayView(image: "arrow.down", temp: weather.forecast.minTempDayText)
                 }
             }
-            .padding(.bottom, 50)
+            .padding(.bottom, 40)
         }
     }
 }
@@ -114,6 +116,7 @@ struct WeatherForecastView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 40, height: 40)
+                    
                     Text("\(day.maxDayTempText)°")
                         .font(.system(size: 28, weight: .medium))
                         .foregroundColor(.white)
@@ -150,15 +153,17 @@ struct WeatherTimeView: View {
                     ForEach(hour.hour, id: \.self) { hour in
                         VStack {
                             Text(hour.timeText)
+                                .font(.footnote)
+                                .fontWeight(.semibold)
                             Image(systemName: hour.condition.iconDayText)
                                 .renderingMode(.original)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 40, height: 40)
+                                .frame(width: 30, height: 30)
                             Text("\(Int(hour.tempC.rounded()))°")
+                                .bold()
                         }
                         .foregroundColor(.white)
-                        .fontWeight(.medium)
                     }
                 }
             }

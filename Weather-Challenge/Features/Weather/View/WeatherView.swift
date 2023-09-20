@@ -55,8 +55,12 @@ struct BackgroundView: View {
     let isNight: Bool
     
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [isNight ? .black : .blue, isNight ? .gray : Color("lightBlue")]), startPoint: .topLeading, endPoint: .bottomTrailing)
-            .edgesIgnoringSafeArea(.all)
+//        LinearGradient(gradient: Gradient(colors: [isNight ? .black : .blue, isNight ? .gray : Color("lightBlue")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+//            .ignoresSafeArea()
+        
+        ContainerRelativeShape()
+            .fill(isNight ? Color.gray.gradient : Color.blue.gradient)
+            .ignoresSafeArea()
     }
 }
 
@@ -80,7 +84,7 @@ struct WeatherCurrentView: View {
             
             VStack(spacing: 15) {
                 Image(systemName: weather.iconText)
-                    .renderingMode(.original)
+                    .symbolRenderingMode(.multicolor)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 140, height: 140)
@@ -112,7 +116,7 @@ struct WeatherForecastView: View {
                         .foregroundColor(.white)
                     
                     Image(systemName: day.iconText)
-                        .renderingMode(.original)
+                        .symbolRenderingMode(.multicolor)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 40, height: 40)
@@ -156,7 +160,7 @@ struct WeatherTimeView: View {
                                 .font(.footnote)
                                 .fontWeight(.semibold)
                             Image(systemName: hour.condition.iconDayText)
-                                .renderingMode(.original)
+                                .symbolRenderingMode(.multicolor)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 30, height: 30)

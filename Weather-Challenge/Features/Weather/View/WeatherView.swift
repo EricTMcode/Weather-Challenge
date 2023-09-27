@@ -32,12 +32,14 @@ struct WeatherView: View {
                 ProgressView()
             }
         }
-        .alert(isPresented: $vm.hasError, error: vm.error) {
+        .alert("Application Error", isPresented: $vm.hasError, presenting: vm.error) { _ in
             Button("Retry") {
                 Task {
                     await vm.fetchCurrentWeather(city: city)
                 }
             }
+        } message: { error in
+            Text(error.errorDescription ?? "Try again later.")
         }
     }
 }
@@ -58,9 +60,9 @@ struct BackgroundView: View {
         LinearGradient(gradient: Gradient(colors: [isNight ? .black : .blue, isNight ? .gray : Color("lightBlue")]), startPoint: .topLeading, endPoint: .bottomTrailing)
             .ignoresSafeArea()
         
-//        ContainerRelativeShape()
-//            .fill(isNight ? Color.gray.gradient : Color.blue.gradient)
-//            .ignoresSafeArea()
+        //        ContainerRelativeShape()
+        //            .fill(isNight ? Color.gray.gradient : Color.blue.gradient)
+        //            .ignoresSafeArea()
     }
 }
 

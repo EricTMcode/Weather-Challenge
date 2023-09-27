@@ -50,15 +50,15 @@ extension NetworkingManager.NetworkingError {
     var errorDescription: String? {
         switch self {
         case .invalidUrl:
-            return "URL isn't valid"
+            return "There was an issue connecting the server. if this persiste, please contact support."
         case .invalidStatusCode(let statusCode):
-            return "Status code falls into the wrong range: \(statusCode)"
+            return "Invalid response from the server. Please try again later or contact support. \(statusCode)"
         case .invalidData:
-            return "Response data is invalid"
+            return "The data received from the server was invalid. Please contact support."
         case .failedToDecode:
             return "Failed to decode"
-        case .custom(let err):
-            return "Something went wrong \(err.localizedDescription)"
+        case .custom(let error):
+            return "\(error.localizedDescription) Please try again later or contact support."
         }
     }
 }

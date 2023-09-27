@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0734EAF42AC311C000F7B503 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0734EAF32AC311C000F7B503 /* Alert.swift */; };
 		077B20922AAF376600AB1B31 /* Weather_ChallengeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077B20912AAF376600AB1B31 /* Weather_ChallengeApp.swift */; };
 		077B20942AAF376600AB1B31 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077B20932AAF376600AB1B31 /* ContentView.swift */; };
 		077B20962AAF376600AB1B31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 077B20952AAF376600AB1B31 /* Assets.xcassets */; };
@@ -21,7 +20,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0734EAF32AC311C000F7B503 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		077B208E2AAF376600AB1B31 /* Weather-Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather-Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		077B20912AAF376600AB1B31 /* Weather_ChallengeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather_ChallengeApp.swift; sourceTree = "<group>"; };
 		077B20932AAF376600AB1B31 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,17 +47,8 @@
 		0734EAF12AC311AD00F7B503 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				0734EAF22AC311B400F7B503 /* Alert */,
 			);
 			path = Utilities;
-			sourceTree = "<group>";
-		};
-		0734EAF22AC311B400F7B503 /* Alert */ = {
-			isa = PBXGroup;
-			children = (
-				0734EAF32AC311C000F7B503 /* Alert.swift */,
-			);
-			path = Alert;
 			sourceTree = "<group>";
 		};
 		077B20852AAF376600AB1B31 = {
@@ -246,7 +235,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0734EAF42AC311C000F7B503 /* Alert.swift in Sources */,
 				077B20A32AAF37D700AB1B31 /* NetworkingManager.swift in Sources */,
 				077B20B02AAF3D0700AB1B31 /* WeatherViewModel.swift in Sources */,
 				078F70572AB49DC900DE8908 /* SFSymbols-WeatherIcons.swift in Sources */,
